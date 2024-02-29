@@ -1,0 +1,25 @@
+from microbit import *
+
+# Initialisatie van variabelen
+points = 0
+
+# Functie voor het afspelen van geluid
+def play_sound():
+    music.pitch(440, 100)
+    sleep(100)
+    music.pitch(880, 100)
+    sleep(100)
+
+# Hoofdprogramma
+while True:
+    # Simulatie van het detecteren van afval
+    if pin0.read_digital() == 1:
+        display.show(Image.HAPPY)
+        play_sound()
+        points += 1
+        display.scroll("Bedankt! Punten: " + str(points))
+        sleep(2000)
+    else:
+        display.show(Image.SAD)
+        display.scroll("Deponeer afval")
+        sleep(1000)
